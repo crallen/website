@@ -253,7 +253,7 @@ nav {
     font-size: 2rem;
 
     @include min-width(md) {
-      text-align: left;
+      text-align: right;
       font-size: 1.5rem;
     }
   }
