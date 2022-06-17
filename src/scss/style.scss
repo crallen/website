@@ -1,0 +1,273 @@
+@import '~@csstools/normalize.css';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~bootstrap-icons/font/bootstrap-icons';
+@import 'animation';
+@import 'colors';
+@import 'responsive';
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+
+  &.menu-open {
+    overflow-y: scroll;
+    position: fixed;
+    width: 100%;
+  }
+}
+
+header {
+  background-color: $brown;
+  color: $white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+
+  .brand {
+    flex: 1;
+  }
+
+  .nav-area {
+    display: flex;
+    flex-direction: row-reverse;
+    flex: 1;
+
+    a {
+      text-decoration: none;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+#intro {
+  background-image: url('/images/bg.jpg');
+  background-position: top 0 left 20%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  color: $white;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+
+  @include min-width(md) {
+    background-attachment: fixed;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+
+    @include min-width(md) {
+      min-height: 100vh;
+    }
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    justify-content: center;
+    text-align: center;
+  }
+
+  header {
+    background-color: transparent;
+    flex: 0 1;
+
+    .brand {
+      display: none;
+    }
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: lighter;
+    margin: 0 0 2.25rem 0;
+    padding: 0;
+
+    @include min-width(md) {
+      font-size: 4rem;
+      margin: 0 0 3rem 0;
+    }
+  }
+}
+
+.container {
+  margin: 0 auto;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+
+  @include min-width(md) {
+    width: 720px;
+    padding: 3rem 0;
+  }
+  @include min-width(lg) {
+    width: 960px;
+  }
+  @include min-width(xxl) {
+    width: 1100px;
+  }
+
+  h2 {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+  }
+
+  p {
+    line-height: 1.75rem;
+    font-size: 1.2rem;
+    font-weight: lighter;
+
+    @include min-width(md) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.overlay {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+.me {
+  background-image: url('/images/me.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  border: 3px solid $darkGreen;
+  margin-bottom: 3rem;
+  align-self: center;
+
+  @include min-width(md) {
+    margin-bottom: 0;
+  }
+}
+
+#summary {
+  flex: 0 0;
+
+  .summary-transition {
+    background: url('/images/bg-transition.png');
+    min-height: 200px;
+  }
+
+  .summary-content {
+    background-color: $brown;
+    padding: 3rem 0;
+    
+    p {
+      font-size: 1.2rem;
+    }
+  }
+
+  .container {
+    flex-direction: column-reverse;
+  } 
+
+  @include min-width(md) {
+    .container {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .about {
+      margin-right: 4rem;
+    }
+  }
+}
+
+#menu {
+  background-color: $darkGreen;
+  height: 100%;
+  right: 0;
+  top: 0;
+  position: absolute;
+  min-width: 100%;
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+
+  @include min-width(md) {
+    min-width: 200px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: $white;
+
+    &.bi-x-lg {
+      margin: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  .menu-open & {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+    display: flex;
+  }
+}
+
+nav {
+  visibility: hidden;
+  display: flex;
+  width: 100%;
+
+  a {
+    text-decoration: none;
+    color: $white;
+    font-weight: lighter;
+  }
+
+  ul {
+    padding: 1rem;
+    flex: 1;
+  }
+
+  li {
+    list-style-type: none;
+    transform: translateX(-250px);
+    animation-duration: .4s;
+    animation-fill-mode: both;
+    animation-name: slideOutRight;
+    text-align: center;
+    padding: 1.25rem 1rem;
+    font-size: 2rem;
+
+    @include min-width(md) {
+      text-align: left;
+      font-size: 1.5rem;
+    }
+  }
+
+  .menu-open & {
+    visibility: visible;
+
+    li {
+      animation-duration: .4s;
+      animation-fill-mode: both;
+      animation-name: slideInRight;
+    }
+  }
+}
