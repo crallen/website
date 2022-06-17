@@ -208,16 +208,13 @@ header {
   @include min-width(md) {
     min-width: 200px;
   }
-  
-  a {
+
+  a.bi-x-lg {
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
     text-decoration: none;
     color: $white;
-
-    &.bi-x-lg {
-      margin: 1rem;
-      padding: 0.5rem 1rem;
-      font-size: 1.5rem;
-    }
   }
 
   .menu-open & {
@@ -255,6 +252,12 @@ nav {
     @include min-width(md) {
       text-align: right;
       font-size: 1.5rem;
+    }
+
+    &.active {
+      & > a {
+        color: $tan;
+      }
     }
   }
 
