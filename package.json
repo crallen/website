@@ -4,7 +4,7 @@
   "description": "chrisallen.dev website",
   "private": true,
   "author": "Chris Allen <crallen@users.noreply.github.com>",
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0",
     "build": "next build",
