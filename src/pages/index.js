@@ -1,5 +1,8 @@
+import Companies from '../components/Companies';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Menu from '../components/Menu';
+import Skills from '../components/Skills';
 import Summary from '../components/Summary';
 
 export default function Home() {
@@ -22,6 +25,9 @@ export default function Home() {
         </div>
         <Summary />
       </section>
+      <Skills />
+      <Companies />
+      <Footer />
     </>
   );
 }
