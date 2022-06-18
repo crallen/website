@@ -1,27 +1,14 @@
 import Header from '../components/Header';
-import { useIsMenuOpen } from '../components/hooks';
 import Menu from '../components/Menu';
 import Summary from '../components/Summary';
 
 export default function Home() {
-  const { setIsMenuOpen } = useIsMenuOpen();
-
-  function onMenuOpen(e) {
-    e.preventDefault();
-    setIsMenuOpen(true);
-  }
-
-  function onMenuClose(e) {
-    e.preventDefault();
-    setIsMenuOpen(false);
-  }
-
   return (
     <>
-      <Menu onMenuClose={onMenuClose} />
+      <Menu />
       <section id="intro">
         <div className="wrapper">
-          <Header onMenuOpen={onMenuOpen} />
+          <Header />
           <div className="container">
             <div className="inner">
               <h1>
