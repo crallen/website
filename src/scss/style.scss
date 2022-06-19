@@ -153,7 +153,7 @@ section {
   flex-shrink: 0;
   flex-grow: 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
-  border: 1px solid $cream;
+  border: 2px solid $cream;
   margin-bottom: 3rem;
   align-self: center;
 
@@ -176,7 +176,8 @@ section {
 
   .container {
     flex-direction: column-reverse;
-    padding: 3rem 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   } 
 
   @include min-width(md) {
@@ -276,30 +277,28 @@ nav {
   }
 }
 
-#skills {
-  .skill-list {
-    display: flex;
-    flex-direction: column;
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+
+  @include min-width(md) {
+    flex-direction: row;
+  }
+
+  & > div {
     flex: 0 0 auto;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: center;
-
+    background-color: $cream;
+    border-radius: 20px;
+    padding: 1rem 2rem;
+    margin: 0.25rem 0.5rem;
+    
     @include min-width(md) {
-      flex-direction: row;
-    }
-
-    & > div {
-      flex: 0 0 auto;
-      background-color: $cream;
-      border-radius: 20px;
-      padding: 1rem 2rem;
-      margin: 0.25rem 0.5rem;
-      
-      @include min-width(md) {
-        margin: 0.5rem;
-        width: $container-md / 2;
-      }
+      margin: 0.5rem;
+      width: $container-md / 2;
     }
   }
 }
@@ -340,7 +339,7 @@ nav {
     white-space: nowrap;
     flex-grow: 0;
     flex-shrink: 0;
-    border: 1px solid $cream;
+    border: 2px solid $cream;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 
