@@ -21,6 +21,10 @@ $breakpoints: (
   )
 );
 
+$container-md: 720px;
+$container-lg: 960px;
+$container-xxl: 1100px;
+
 @mixin min-width($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     $breakpoint-values: map-get($breakpoints, $breakpoint);

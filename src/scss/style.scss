@@ -107,14 +107,14 @@ section {
   flex-direction: column;
 
   @include min-width(md) {
-    width: 720px;
+    width: $container-md;
     padding: 4rem 0;
   }
   @include min-width(lg) {
-    width: 960px;
+    width: $container-lg;
   }
   @include min-width(xxl) {
-    width: 1100px;
+    width: $container-xxl;
   }
 
   h2 {
@@ -153,7 +153,7 @@ section {
   flex-shrink: 0;
   flex-grow: 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
-  border: 1px solid $darkGreen;
+  border: 1px solid $cream;
   margin-bottom: 3rem;
   align-self: center;
 
@@ -234,6 +234,7 @@ nav {
     text-decoration: none;
     color: $white;
     font-weight: lighter;
+    padding: 0.5rem;
   }
 
   ul {
@@ -248,7 +249,7 @@ nav {
     animation-fill-mode: both;
     animation-name: slideOutRight;
     text-align: center;
-    padding: 1.25rem 1rem;
+    padding: 1rem 0.5rem;
     font-size: 2rem;
 
     @include min-width(md) {
@@ -258,7 +259,8 @@ nav {
 
     &.active {
       & > a {
-        color: $tan;
+        color: $darkGreen;
+        background-color: $white;
       }
     }
   }
@@ -274,8 +276,40 @@ nav {
   }
 }
 
+#skills {
+  .skill-list {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+
+    @include min-width(md) {
+      flex-direction: row;
+    }
+
+    & > div {
+      flex: 0 0 auto;
+      background-color: $cream;
+      border-radius: 20px;
+      padding: 1rem 2rem;
+      margin: 0.25rem 0.5rem;
+      
+      @include min-width(md) {
+        margin: 0.5rem;
+        width: $container-md / 2;
+      }
+    }
+  }
+}
+
 #companies {
-  background-color: $lightTan;
+  background-color: $darkGreen;
+
+  h2 {
+    color: $white;
+  }
 }
 
 .company-list {
@@ -306,7 +340,7 @@ nav {
     white-space: nowrap;
     flex-grow: 0;
     flex-shrink: 0;
-    border: 1px solid $darkGreen;
+    border: 1px solid $cream;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 
@@ -334,21 +368,20 @@ nav {
 }
 
 footer {
-  background-color: $brown;
+  background-color: $darkerGreen;
   color: $white;
   
   .container {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding-bottom: 2rem;
   }
 
   .copyright {
     p {
       font-weight: lighter;
       font-size: 0.85rem;
-      line-height: 0.85rem;
+      line-height: 1rem;
       text-align: center;
     }
   }
