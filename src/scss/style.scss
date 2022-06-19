@@ -147,18 +147,20 @@ section {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 20px;
   flex-shrink: 0;
   flex-grow: 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
   border: 2px solid $cream;
-  margin-bottom: 3rem;
+  margin: 1rem 0;
   align-self: center;
 
   @include min-width(md) {
-    margin-bottom: 0;
+    margin: 0 0 0 3rem;
+    width: 200px;
+    height: 200px;
   }
 }
 
@@ -175,23 +177,23 @@ section {
   }
 
   .container {
-    flex-direction: column-reverse;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-  } 
+  }
+
+  .about {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+  }
 
   @include min-width(md) {
     h2 {
       text-align: left;
     }
 
-    .container {
+    .about { 
       flex-direction: row;
-      align-items: flex-start;
-    }
-
-    .about {
-      margin-right: 4rem;
     }
   }
 }
@@ -294,11 +296,17 @@ nav {
     background-color: $cream;
     border-radius: 20px;
     padding: 1rem 2rem;
-    margin: 0.25rem 0.5rem;
+    margin: 0.4rem 1rem;
     
     @include min-width(md) {
       margin: 0.5rem;
-      width: $container-md / 2;
+      width: 680px;
+    }
+    @include min-width(lg) {
+      width: 400px;
+    }
+    @include min-width(xxl) {
+      width: 470px;
     }
   }
 }
