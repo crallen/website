@@ -12,7 +12,13 @@ export default function Footer() {
           <SocialIcon type="facebook" />
           <SocialIcon type="linkedin" />
         </div>
-        <div className="copyright">&copy; {today.getFullYear()} Christopher R. Allen</div>
+        <div className="copyright">
+          <p>&copy; {today.getFullYear()} Christopher R. Allen</p>
+          <p>
+            All images are copyright their respective owners and are protected under copyright laws.
+            All trademarks are the property of their respective owners.
+          </p>
+        </div>
       </div>
     </footer>
   );

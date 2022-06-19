@@ -341,11 +341,16 @@ footer {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding-bottom: 2rem;
   }
 
   .copyright {
-    font-weight: lighter;
-    font-size: 0.85rem;
+    p {
+      font-weight: lighter;
+      font-size: 0.85rem;
+      line-height: 0.85rem;
+      text-align: center;
+    }
   }
 }
 
