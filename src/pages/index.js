@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Script from 'next/script';
 import Companies from '../components/Companies';
 import Footer from '../components/Footer';
@@ -9,6 +10,9 @@ import Summary from '../components/Summary';
 export default function Home() {
   return (
     <>
+      <Head>
+        <title>chrisallen.dev</title>
+      </Head>
       <Menu />
       <section id="intro">
         <div className="wrapper">
