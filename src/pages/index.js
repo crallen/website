@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import Companies from '../components/Companies';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -28,6 +29,19 @@ export default function Home() {
       <Skills />
       <Companies />
       <Footer />
+
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=UA-100432822-1"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-100432822-1');
+          `}
+      </Script>
     </>
   );
 }
