@@ -35,7 +35,7 @@ export default function Home() {
       <Footer />
 
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=UA-100432822-1"
+        src="https://www.googletagmanager.com/gtag/js?id=G-HQL1C6ZYZZ"
         strategy="afterInteractive"
       />
       <Script id="google-analytics" strategy="afterInteractive">
@@ -43,7 +43,7 @@ export default function Home() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){window.dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'UA-100432822-1');
+            gtag('config', 'G-HQL1C6ZYZZ');
           `}
       </Script>
     </>
