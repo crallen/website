@@ -1,6 +1,6 @@
 export default function Summary() {
   return (
-    <div id="summary">
+    <section id="summary">
       <div className="container">
         <h2>About Me</h2>
         <div className="about">
@@ -19,6 +19,6 @@ export default function Summary() {
           <div className="me"></div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
