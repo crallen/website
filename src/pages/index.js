@@ -28,8 +28,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <Summary />
       </section>
+
+      <Summary />
       <Skills />
       <Companies />
       <Footer />
