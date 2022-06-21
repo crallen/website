@@ -54,7 +54,7 @@ section {
   display: flex;
   flex-direction: column;
 
-  @include min-width(md) {
+  @include min-width(lg) {
     background-attachment: fixed;
   }
 
