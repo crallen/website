@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-export const MenuContext = createContext();
+const MenuContext = createContext();
 
 export const MenuContextProvider = ({ children }) => {
   const [open, setOpen] = useState(false);

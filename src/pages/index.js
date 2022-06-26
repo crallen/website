@@ -26,7 +26,6 @@ export default function Home() {
       <Summary />
       <Skills />
       <Companies />
-      <Footer />
     </DefaultLayout>
   );
 }

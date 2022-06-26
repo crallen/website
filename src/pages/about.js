@@ -1,5 +1,9 @@
 import InnerLayout from '../layouts/InnerLayout';
 
 export default function About() {
-  return <InnerLayout></InnerLayout>;
+  return (
+    <InnerLayout>
+      <section id="bio"></section>
+    </InnerLayout>
+  );
 }

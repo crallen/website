@@ -5,7 +5,7 @@ export default function InnerLayout(props) {
   return (
     <DefaultLayout>
       <Header />
-      {props.children}
+      <main>{props.children}</main>
     </DefaultLayout>
   );
 }
