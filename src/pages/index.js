@@ -10,7 +10,7 @@ export default function Home() {
     <DefaultLayout>
       <section id="intro">
         <div className="wrapper">
-          <Header />
+          <Header menuClassName="overlay" />
           <div className="container">
             <div className="inner">
               <h1>

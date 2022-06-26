@@ -10,7 +10,7 @@ export default function Skills() {
             <p>
               I plan and build systems that leverage a variety of technologies. I have experience
               working with monoliths, microservice architecture, and systems in various states in
-              between.
+              between. I&apos;ve also worked extensively with asynchronous systems and messaging.
             </p>
           </SkillDetail>
           <SkillDetail title="Backend Development">

@@ -1,14 +1,18 @@
-export default function Header() {
+import { useMenu } from './MenuContext';
+
+export default function Header(props) {
+  const { setOpen } = useMenu();
+
   function openMenu(e) {
     e.preventDefault();
-    document.querySelector('body').classList.add('menu-open');
+    setOpen(true);
   }
 
   return (
     <header>
       <div className="brand">chrisallen.dev</div>
       <div className="nav-area">
-        <a href="#" className="overlay bi bi-list" onClick={openMenu}></a>
+        <a href="#" className={`bi bi-list ${props.menuClassName}`} onClick={openMenu}></a>
       </div>
     </header>
   );
