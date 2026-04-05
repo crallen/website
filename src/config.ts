@@ -3,4 +3,4 @@
 // This controls the nav link, footer RSS link, and whether the
 // blog pages are built and included in the sitemap.
 
-export const BLOG_ENABLED = false;
+export const BLOG_ENABLED = true;
