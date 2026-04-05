@@ -1,0 +1,378 @@
+---
+import { BLOG_ENABLED } from '../config';
+
+const navLinks = [
+  { label: 'About',      href: '/#about' },
+  { label: 'Skills',     href: '/#skills' },
+  { label: 'Experience', href: '/#experience' },
+  { label: 'Contact',    href: '/#contact' },
+  ...(BLOG_ENABLED ? [{ label: 'Blog', href: '/blog' }] : []),
+];
+
+const currentPath = Astro.url.pathname;
+const isBlogPage = currentPath.startsWith('/blog');
+---
+
+<header id="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="Chris Allen – home">
+      chrisallen.dev
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      {navLinks.map(link => {
+        const sectionId = link.href.startsWith('/#') ? link.href.slice(2) : null;
+        return (
+          <a
+            href={link.href}
+            class:list={['nav-link', { active: isBlogPage && link.href === '/blog' }]}
+            data-section={sectionId ?? undefined}
+          >
+            {link.label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <div class="header-actions">
+      <a
+        href="https://github.com/crallen"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="github-link"
+        aria-label="GitHub profile"
+        title="GitHub"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+        </svg>
+      </a>
+      <button
+        id="menu-open"
+        class="hamburger"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu overlay -->
+<div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" hidden>
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-header">
+      <span class="brand">chrisallen.dev</span>
+      <button id="menu-close" class="menu-close" aria-label="Close navigation menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      {navLinks.map((link, i) => (
+        <a
+          href={link.href}
+          class="mobile-nav-link"
+          style={`animation-delay: ${i * 0.07}s`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</div>
+
+<style>
+  #site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: color-mix(in srgb, var(--color-section-dark-bg) 88%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid color-mix(in srgb, #F5F0EB 10%, transparent);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+    gap: 1rem;
+  }
+
+  .brand {
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+    color: var(--color-section-dark-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    flex-shrink: 0;
+  }
+  .brand:hover { color: var(--color-sage); }
+
+  /* Desktop nav */
+  .desktop-nav {
+    display: none;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .desktop-nav { display: flex; }
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: color-mix(in srgb, #F5F0EB 65%, transparent);
+    text-decoration: none;
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.5rem;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-sage);
+    background: color-mix(in srgb, var(--color-sage) 15%, transparent);
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* GitHub link */
+  .github-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.5rem;
+    color: color-mix(in srgb, #F5F0EB 65%, transparent);
+    text-decoration: none;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .github-link:hover {
+    color: #F5F0EB;
+    background: color-mix(in srgb, #F5F0EB 8%, transparent);
+  }
+
+  /* Hamburger – mobile only */
+  .hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: transparent;
+    border: 1px solid color-mix(in srgb, #F5F0EB 20%, transparent);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: color-mix(in srgb, #F5F0EB 75%, transparent);
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .hamburger:hover {
+    background: color-mix(in srgb, #F5F0EB 8%, transparent);
+    border-color: var(--color-sage);
+    color: var(--color-sage);
+  }
+
+  @media (min-width: 768px) {
+    .hamburger { display: none; }
+  }
+
+  /* ── Mobile menu ─────────────────────────── */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: var(--color-bg);
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-menu[hidden] { display: none; }
+
+  .mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.5rem;
+  }
+
+  .mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+  }
+
+  .menu-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: var(--color-text);
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .menu-close:hover {
+    background: var(--color-surface);
+    border-color: var(--color-sage);
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-heading);
+    text-decoration: none;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+    transition: color 0.2s ease, padding-left 0.2s ease;
+    opacity: 0;
+    animation: slideIn 0.3s ease forwards;
+  }
+  .mobile-nav-link:hover {
+    color: var(--color-sage);
+    padding-left: 0.5rem;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+</style>
+
+<script>
+  const openBtn  = document.getElementById('menu-open');
+  const closeBtn = document.getElementById('menu-close');
+  const menu     = document.getElementById('mobile-menu');
+
+  function openMenu() {
+    menu?.removeAttribute('hidden');
+    openBtn?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menu?.setAttribute('hidden', '');
+    openBtn?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  openBtn?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+
+  // Close on nav link click
+  menu?.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu?.hasAttribute('hidden')) closeMenu();
+  });
+
+  // ── Section-based active nav highlighting ──────────────────────
+  // Only runs on the homepage where the anchor sections exist
+  const sectionLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-link[data-section]');
+
+  if (sectionLinks.length > 0) {
+    const sectionIds = Array.from(sectionLinks).map(l => l.dataset.section!);
+    const sections = sectionIds
+      .map(id => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    // Use scroll position directly: find whichever section's top is
+    // closest to (but still above) 40% down the viewport. This is more
+    // reliable than IntersectionObserver thresholds for short sections
+    // at the bottom of the page.
+    const HEADER_HEIGHT = 64;
+
+    function getActiveSection(): string | undefined {
+      const trigger = window.scrollY + window.innerHeight * 0.4 + HEADER_HEIGHT;
+      // Walk sections in reverse so the last one whose top <= trigger wins
+      let active: string | undefined;
+      for (const section of sections) {
+        if (section.offsetTop <= trigger) {
+          active = section.id;
+        }
+      }
+      return active;
+    }
+
+    function updateActiveLink() {
+      const active = getActiveSection();
+      sectionLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.section === active);
+      });
+    }
+
+    // Suppress scroll-based highlighting during smooth-scroll navigation.
+    // When a nav link is clicked we know the destination, so we apply it
+    // immediately and pause the scroll listener until the scroll settles.
+    let navigating = false;
+    let scrollEndTimer: ReturnType<typeof setTimeout>;
+
+    sectionLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const target = link.dataset.section;
+        if (!target) return;
+
+        // Immediately highlight the destination link
+        sectionLinks.forEach(l => l.classList.toggle('active', l.dataset.section === target));
+
+        // Pause scroll-based updates until scrolling stops
+        navigating = true;
+        clearTimeout(scrollEndTimer);
+      });
+    });
+
+    // Throttle to animation frames, skip while navigating
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (navigating) {
+        // Reset the timer each scroll event; re-enable 100ms after the last one
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(() => {
+          navigating = false;
+          updateActiveLink();
+        }, 100);
+        return;
+      }
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateActiveLink();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Set correct state on load
+    updateActiveLink();
+  }
+</script>

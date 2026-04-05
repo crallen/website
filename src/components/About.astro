@@ -1,0 +1,155 @@
+---
+---
+
+<section id="about" aria-labelledby="about-heading">
+  <div class="container about-inner">
+    <h2 id="about-heading" class="section-label">About Me</h2>
+    <div class="about-grid">
+      <div class="about-photo-wrap">
+        <div class="about-photo-ring">
+          <img
+            src="/images/me.jpg"
+            alt="Chris Allen"
+            class="about-photo"
+            width="240"
+            height="240"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+      <div class="about-body">
+        <h3 class="about-heading">
+          I've been building software for more than 20&nbsp;years&mdash;and I still love it.
+        </h3>
+        <p>
+          My focus is on system design, backend development, and platform engineering.
+          I thrive at the intersection of architecture and implementation: designing
+          systems that are both technically sound and pragmatic to build. I've spent
+          much of my career working with cloud infrastructure, crafting CI/CD pipelines,
+          and embedding DevOps culture into engineering teams.
+        </p>
+        <p>
+          When I'm not at the keyboard, I'm with my wife, son, and our dogs. We travel
+          whenever we get the chance, and I've turned cooking into a genuine hobby&mdash;there's
+          something about the precision and creativity of a good recipe that appeals to
+          the same part of my brain as writing good software.
+        </p>
+        <div class="about-chips">
+          <span class="chip">System Design</span>
+          <span class="chip">Backend Development</span>
+          <span class="chip">Platform Engineering</span>
+          <span class="chip">Cloud Infrastructure</span>
+          <span class="chip">DevOps</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #about {
+    background: var(--color-section-dark-bg);
+    color: var(--color-section-dark-text);
+    padding-block: 5rem;
+    transition: background 0.3s ease;
+  }
+
+  .about-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-sage);
+    margin: 0;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .about-grid {
+      grid-template-columns: auto 1fr;
+      gap: 4rem;
+    }
+  }
+
+  .about-photo-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .about-photo-ring {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--color-sage), color-mix(in srgb, var(--color-sage) 40%, #F5F0EB));
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .about-photo-ring {
+      width: 220px;
+      height: 220px;
+    }
+  }
+
+  .about-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .about-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .about-heading {
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    font-weight: 600;
+    color: var(--color-section-dark-text);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .about-body p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-section-dark-muted);
+    margin: 0;
+  }
+
+  .about-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .chip {
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    border: 1px solid color-mix(in srgb, var(--color-sage) 50%, transparent);
+    color: var(--color-sage);
+    background: color-mix(in srgb, var(--color-sage) 10%, transparent);
+    letter-spacing: 0.02em;
+  }
+</style>

@@ -1,0 +1,172 @@
+---
+import { BLOG_ENABLED } from '../config';
+---
+
+<section id="hero" aria-label="Introduction">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="container hero-content">
+    <div class="hero-text">
+      <p class="hero-greeting">Hi, I'm</p>
+      <h1 class="hero-name">Chris Allen</h1>
+      <p class="hero-title">Software Architect &amp; Platform Engineer</p>
+      <p class="hero-tagline">Engineering scalable systems<br class="br-md" /> from backend to cloud.</p>
+      <div class="hero-actions">
+        <a href="/#about" class="btn btn-primary">About Me</a>
+        {BLOG_ENABLED && <a href="/blog" class="btn btn-outline">Read My Blog</a>}
+      </div>
+    </div>
+  </div>
+  <a href="/#about" class="scroll-hint" aria-label="Scroll to About section">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="m6 9 6 6 6-6"/>
+    </svg>
+  </a>
+</section>
+
+<style>
+  #hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/bg.jpg');
+    background-size: cover;
+    background-position: center 20%;
+    background-repeat: no-repeat;
+    transform: scale(1.02);
+    transition: transform 8s ease;
+  }
+
+  #hero:hover .hero-bg {
+    transform: scale(1);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, #1A1814 75%, transparent) 0%,
+      color-mix(in srgb, #2D2A26 50%, transparent) 50%,
+      color-mix(in srgb, #3A4A3C 30%, transparent) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding-block: 6rem;
+    padding-top: 8rem;
+  }
+
+  .hero-text {
+    max-width: 38rem;
+  }
+
+  .hero-greeting {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-sage);
+    margin: 0 0 0.35rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .hero-name {
+    font-size: clamp(2.75rem, 7vw, 5rem);
+    font-weight: 700;
+    color: #F5F0EB;
+    margin: 0 0 1rem;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  .hero-title {
+    font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+    font-weight: 500;
+    color: color-mix(in srgb, #F5F0EB 65%, transparent);
+    margin: 0 0 1rem;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+    font-weight: 400;
+    color: color-mix(in srgb, #F5F0EB 80%, transparent);
+    margin: 0 0 2.5rem;
+    line-height: 1.5;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary {
+    background: var(--color-sage);
+    color: #F5F0EB;
+    border: 2px solid var(--color-sage);
+  }
+  .btn-primary:hover {
+    background: var(--color-olive);
+    border-color: var(--color-olive);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: #F5F0EB;
+    border: 2px solid color-mix(in srgb, #F5F0EB 50%, transparent);
+  }
+  .btn-outline:hover {
+    border-color: #F5F0EB;
+    background: color-mix(in srgb, #F5F0EB 10%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: color-mix(in srgb, #F5F0EB 60%, transparent);
+    animation: bounce 2s ease-in-out infinite;
+    text-decoration: none;
+    z-index: 1;
+    transition: color 0.2s ease;
+  }
+  .scroll-hint:hover {
+    color: #F5F0EB;
+  }
+
+  .br-md { display: none; }
+  @media (min-width: 640px) {
+    .br-md { display: block; }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(8px); }
+  }
+</style>

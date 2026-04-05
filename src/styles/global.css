@@ -1,0 +1,127 @@
+@import "tailwindcss";
+@import "@fontsource-variable/plus-jakarta-sans";
+
+/* ── Theme tokens ───────────────────────────────────────────── */
+@theme {
+  /* Fonts */
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* Brand colors – light mode defaults */
+  --color-bg:           #F5F0EB;
+  --color-surface:      #FAFAF8;
+  --color-charcoal:     #2D2A26;
+  --color-sage:         #5C7A5E;
+  --color-olive:        #3A4A3C;
+  --color-text:         #1A1A1A;
+  --color-text-muted:   #6B6560;
+  --color-border:       #E0D9D2;
+
+  /* Semantic aliases used in components */
+  --color-brand:        var(--color-sage);
+  --color-brand-dark:   var(--color-olive);
+  --color-heading:      var(--color-charcoal);
+
+  /* Dark accent sections (About, footer) */
+  --color-section-dark-bg:    #2D2A26;
+  --color-section-dark-text:  #F5F0EB;
+  --color-section-dark-muted: color-mix(in srgb, #F5F0EB 70%, transparent);
+}
+
+/* ── Base styles ────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ── Focus styles ───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-sage);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ── Prose overrides for blog posts ─────────────────────────── */
+.prose {
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-heading);
+  --tw-prose-links: var(--color-sage);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-code: var(--color-sage);
+  --tw-prose-pre-bg: #1e1e1e;
+  --tw-prose-hr: var(--color-border);
+  --tw-prose-quotes: var(--color-text-muted);
+  --tw-prose-quote-borders: var(--color-sage);
+
+  max-width: 70ch;
+}
+
+.prose a {
+  color: var(--color-sage);
+  text-decoration-color: var(--color-sage);
+  transition: color 0.2s ease;
+}
+.prose a:hover {
+  color: var(--color-olive);
+}
+
+.prose pre {
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+}
+
+.prose code:not(pre code) {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.125rem 0.375rem;
+  font-size: 0.875em;
+}
+
+/* ── Section anchor offset (for fixed header) ───────────────── */
+section[id] {
+  scroll-margin-top: 4rem;
+}
+
+/* ── Utility: container ─────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: 2rem;
+  }
+}
