@@ -7,12 +7,14 @@ draft: false
 ---
 
 I've been using AI coding agents heavily for the past several months, and the experience has been great, except for one thing: these tools have no sense of boundaries.
-
+ 
 I don't mean that metaphorically. I mean I've watched coding agents leave my project directory for reasons I still can't explain. I've seen them try to access my home directory. When you're deep in a flow state, trusting an agent to execute a plan you've agreed on, discovering it's been poking around in places it has no business being is unsettling. It breaks trust.
-
+ 
 I wanted a setup where the agent physically *cannot* wander. Where the only files it can see are the ones I've chosen to expose. And while I was at it, I wanted a full team of specialized agents. Not a single do-everything assistant, but something closer to how real engineering teams operate.
-
-The result is [opencode-sandbox](https://github.com/crallen/opencode-sandbox): a Dockerized AI coding environment with a built-in team of agents, each with scoped permissions, that adapts to whatever tech stack it finds. And in a satisfying bit of recursion, the agent team largely built the project itself.
+ 
+The result is [opencode-sandbox](https://github.com/crallen/opencode-sandbox): a Dockerized AI coding environment with a built-in team of agents, each with scoped permissions, that adapts to whatever tech stack it finds.
+ 
+And in a satisfying bit of recursion, the agent team largely built the project itself. It also helped produce the new iteration of this website, which was the more important test. I didn't just want a system that could work on its own codebase. I wanted something I could trust on real work.
 
 ## Docker as a Hard Boundary
 
@@ -28,11 +30,13 @@ Everything not mounted simply doesn't exist from the agent's perspective. There'
 
 This security thinking extends to smaller details too. API keys are passed into the container via a temporary env-file rather than `-e` flags, so they never appear in host process listings. The container runs as a non-root user with UID/GID matched to the host. `.env` files inside the workspace are explicitly blocked from agent reads to prevent accidental secret exposure. These are small things individually, but they add up to an environment where you can let the agent work without watching over its shoulder.
 
+![opencode-sandbox architecture diagram](/images/blog/opencode-sandbox-diagram.svg)
+
 ## Why OpenCode
 
-I chose [OpenCode](https://opencode.ai) as the foundation for a few reasons. The TUI is well-designed. When the agent needs input from you, it provides interactive prompts that guide you through providing answers rather than just dumping a question into the chat. That kind of interaction design matters when you're spending hours in a tool.
-
-More importantly, OpenCode has a powerful custom agent system. You can define specialized agents with their own system prompts, tool permissions, and even specific models if you want certain agents running on different LLMs. It also gives you access to models from multiple providers, including Claude, OpenAI, and others, at no markup on the API costs.
+I built this on [OpenCode](https://opencode.ai) because it already had the two things I didn't want to build myself. The TUI is solid. When the agent needs input from you, you get interactive prompts that guide you through providing answers rather than just a question dumped into the chat. That matters when you're spending hours in a tool.
+ 
+More importantly, OpenCode has a custom agent system that's flexible enough to support distinct roles, permission scopes, and even different models per agent. It also gives you access to models from multiple providers, including Claude, OpenAI, and others, at no markup on the API costs. The sandbox wouldn't work without a runtime that supports that kind of customization, and OpenCode gave me that out of the box.
 
 ## A Full Engineering Team, Not a Single Agent
 
@@ -75,14 +79,16 @@ Getting this layering right (what's baked in, what's mounted, what persists, wha
 ## The Meta Moment: The Agents Built This
 
 This is my favorite part: the agent team in this project was largely built by agents.
-
+ 
 I started with OpenCode's default agents, installed locally on my machine with no sandbox yet. Using OpenCode's plan mode, I described the concept: create a Docker container with OpenCode installed that can have a workspace mounted into it. The first design it proposed was based on Docker Compose, which wasn't quite what I wanted. So we iterated. Back and forth, refining the approach, until we landed on the script-driven design you see today: a single launcher script that handles image building, volume management, and mount configuration.
-
+ 
 Once the basic script and container were in place, I started working from *inside* the sandbox, using it as my development environment. This is where it gets recursive. I had the default agents build out an initial set of seven specialist agents. They wrote the agent definitions, the system prompts, the permission scoping, all of it.
-
+ 
 Then I added the security analyst agent. And that's when a thought occurred to me: what if I created an agent whose specialty was *building agents*? An agent that understood best practices for system prompt design, permission scoping, and skill authoring? So I created the agent builder — and then pointed it at the other eight agents to review and improve them.
-
-I love that loop. You build a tool, use the tool to improve itself, and end up with something better than you could have designed in one pass. The agent team also produced the new iteration of my personal website, which gave me confidence that the system generalizes beyond its own codebase.
+ 
+I love that loop. You build a tool, use the tool to improve itself, and end up with something better than you could have designed in one pass.
+ 
+When I used the system to build the new version of my website, the experience felt different from the early iterations on the sandbox itself. I wasn't guiding as much. The agents knew their roles, stayed in their lanes, and produced work I could actually ship. That was the point where this stopped feeling like an interesting experiment and started feeling like a real environment.
 
 ## Try It Yourself
 
