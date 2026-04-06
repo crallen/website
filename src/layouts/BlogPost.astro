@@ -323,8 +323,14 @@ const readingTime = Math.max(1, Math.round(words / 200));
     height: 100dvh;
     max-height: 100dvh;
     overflow: hidden;
+  }
 
-    /* Center the inner content */
+  /* Only display as flex when the dialog is actually open.
+     Without this guard the author's display:flex overrides the browser's
+     built-in display:none for closed <dialog> elements, making the
+     100dvh-tall dialog sit in the document flow even when closed and
+     creating a large blank scrollable area below the footer. */
+  #img-lightbox[open] {
     display: flex;
     align-items: center;
     justify-content: center;
