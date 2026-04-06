@@ -88,7 +88,13 @@ const readingTime = Math.max(1, Math.round(words / 200));
   }
 
   .blog-post-wrapper .container {
-    max-width: 780px;
+    max-width: 860px;
+  }
+
+  @media (min-width: 1024px) {
+    .blog-post-wrapper .container {
+      max-width: 900px;
+    }
   }
 
   .back-nav {

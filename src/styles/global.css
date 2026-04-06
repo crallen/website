@@ -81,8 +81,6 @@ body {
   --tw-prose-hr: var(--color-border);
   --tw-prose-quotes: var(--color-text-muted);
   --tw-prose-quote-borders: var(--color-sage);
-
-  max-width: 70ch;
 }
 
 .prose a {
